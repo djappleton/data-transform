@@ -1,0 +1,39 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+    <bean id="update" class="com.salesforce.dataloader.process.ProcessRunner" singleton="false">
+        <description>Update job.</description>
+        <property name="name" value="update"/>
+        <property name="configOverrideMap">
+            <map>
+            
+				<entry key="sfdc.proxyHost" 			value="macproxy.barnardos.org.uk"/>
+				<entry key="sfdc.proxyPassword" 		value=""/>
+				<entry key="sfdc.proxyPort" 			value="8080"/>
+				<entry key="sfdc.proxyUsername" 		value=""/>
+            
+				<entry key="sfdc.endpoint" 				value="https://live.salesforce.com"/>
+				<entry key="sfdc.username" 				value="david.appleton@barnardos.org.uk"/>
+				<entry key="sfdc.password" 				value="77d396604bcbfb9101964964ddd4318bfdcd01923f3621c795fd7dcda349b992bdda4d8a14bee508"/>
+				<entry key="process.encryptionKeyFile" 	value="C:\WORK\DEVELOPMENT\JAVA\Eclipse\Workspaces\2017\bdu.transfer\src\main\resources\Key.txt"/>
+				<entry key="sfdc.timeoutSecs" 			value="600"/>
+				<entry key="sfdc.loadBatchSize" 		value="200"/>
+				<entry key="sfdc.extractionRequestSize" value="500"/>
+            	
+                <entry key="sfdc.entity" 				value="BDU_Contract__c"/>
+                <entry key="dataAccess.type" 			value="csvRead"/>
+                <entry key="process.operation" 			value="update"/>
+                <entry key="dataAccess.name" 			value="C:\WORK\DEVELOPMENT\JAVA\Eclipse\Workspaces\2017\bdu.transfer\src\main\resources\config\Contract\csv\idPairs\data.csv"/>
+                <entry key="process.mappingFile" 		value="C:\Users\david.appleton\git\data-transform\src\test\resources\test-1\liveMapping.sdl"/>
+                
+                <entry key="sfdc.debugMessages" 		value="true"/>
+                <entry key="process.outputSuccess" 		value="C:\Users\david.appleton\git\data-transform\src\test\resources\test-1\output\result\success\data.csv"/>
+                <entry key="process.outputError" 		value="C:\Users\david.appleton\git\data-transform\src\test\resources\test-1\output\result\error\data.csv"/>
+                <entry key="sfdc.debugMessagesFile" 	value="C:\Users\david.appleton\git\data-transform\src\test\resources\test-1\output\result\debug\data.csv"/>
+                
+                
+            </map>
+        </property>
+    </bean>
+    
+</beans>

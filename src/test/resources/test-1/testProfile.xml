@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<profile xmlns:xi="http://www.w3.org/2001/XInclude">
+	
+	<init>
+	
+		<!-- dataloader>
+			<instance
+		            id="dataSandbox"
+					sfdcEndpoint="https://test.salesforce.com"
+		            sfdcUsername="david.appleton@barnardos.org.uk.data" 
+		            sfdcPassword="77d396604bcbfb9101964964ddd4318bfdcd01923f3621c795fd7dcda349b992bdda4d8a14bee508"
+		            processEncryptionKeyFile="C:\WORK\DEVELOPMENT\JAVA\Eclipse\Workspaces\2017\bdu.transfer\src\main\resources\Key.txt"
+			/>
+		</dataloader-->
+		
+		<cleanFile>
+			<replace>
+				<item searchFor=" \r\n" replaceWith="\r\n" />
+				<item searchFor=" \n" replaceWith="\n" />
+				<item searchFor="\r\n" replaceWith="[NEWLINE]" />
+				<item searchFor="\n" replaceWith="[TEXTBREAK]" />
+				<item searchForChar="10" replaceWith="[TEXTBREAK]" />
+				<item searchFor="[NEWLINE]" replaceWith="\r\n" />
+			</replace>
+		</cleanFile>
+	
+	</init>
+	
+	<jobs>
+		
+		<cleanFile inFile="C:\Users\david.appleton\git\data-transform\src\test\resources\test-1\contractData.csv" 
+				  outFile="C:\Users\david.appleton\git\data-transform\src\test\resources\test-1\contractNewClean.csv">
+		
+			<replace>
+				<item searchFor="  " replaceWith=" " recursive="true" />
+				<item searchFor=" ^" replaceWith="^" />
+				<item searchFor="^ " replaceWith="^" />
+			</replace>
+			
+			<removeRow>
+				<condition contains="---"  />
+				<condition isEmpty="true"  />
+			</removeRow>
+		
+		</cleanFile> 
+		
+		<convertCSV inFileLocation="C:\Users\david.appleton\git\data-transform\src\test\resources\test-1\contractData.csv" 
+		            outDirLocation="C:\Users\david.appleton\git\data-transform\src\test\resources\test-1\output\contractTemp\" 
+		                 batchSize="10">
+			
+			<column sourceIndex="0" destinationName="ID" />
+			<column sourceIndex="3" destinationName="BDU_Contract_Value_Total__c" />
+		
+		</convertCSV>		
+		
+		<!-- xi:include href="jobs/waitFor5Seconds.xml"/-->
+		
+		<convertCSV inFileLocation="C:\Users\david.appleton\git\data-transform\src\test\resources\test-1\contractData.csv" 
+		            outDirLocation="C:\Users\david.appleton\git\data-transform\src\test\resources\test-1\output\contractOriginal\" 
+		                 batchSize="10">
+			
+			<column sourceIndex="0" destinationName="Id" />
+			<column sourceIndex="2" destinationName="BDU_Contract_Value_Total__c" />
+		
+		</convertCSV>
+		
+		<!-- dataloader configFileDir="C:\Users\david.appleton\git\data-transform\src\test\resources\test-1\config\Contract\"
+ 					      dataDir="C:\Users\david.appleton\git\data-transform\src\test\resources\test-1\output\contractTemp\"
+ 					objectAPIName="BDU_Contract__c"
+  						beanName="update" //-->
+		
+		<!-- dataloader configFileDir="C:\Users\david.appleton\git\data-transform\src\test\resources\test-1\config\Contract\"
+ 					      dataDir="C:\Users\david.appleton\git\data-transform\src\test\resources\test-1\output\contractOriginal\"
+ 					objectAPIName="BDU_Contract__c"
+  						beanName="update" //-->		
+		
+		<!-- xi:include href="jobs/waitFor5Seconds.xml"/-->
+		
+
+	</jobs>
+	
+</profile>
+
+

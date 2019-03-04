@@ -1,0 +1,29 @@
+<cleanFile inFile="" outFile="">
+	
+	<replace>
+		<item searchFor="  " replaceWith=" " recursive="true" />
+		<item searchFor=" ^" replaceWith="^" />
+		<item searchFor="^ " replaceWith="^" />
+		<item searchFor=" \r\n" replaceWith="\r\n" />
+		<item searchFor=" \n" replaceWith="\n" />
+		<item searchFor="\r\n" replaceWith="[NEWLINE]" />
+		<item searchFor="\n" replaceWith="[TEXTBREAK]" />
+		<item searchForChar="10" replaceWith="[TEXTBREAK]" />
+		<item searchFor="[NEWLINE]" replaceWith="\r\n" />
+	</replace>
+	
+	<removeRow>
+		<condition contains="---"  />
+		<condition isEmpty="true"  />
+	</removeRow>
+	
+	<removeValue>
+		<condition heading="" value="" />
+	</removeValue>
+	
+	<validateData>
+		<column heading="" datatype="" default="" />
+	</validateData>
+	
+</cleanFile>
+		

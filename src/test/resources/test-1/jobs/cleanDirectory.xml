@@ -1,0 +1,12 @@
+
+<cleanDirectory directory="test-1">
+	<files action="keep">
+		<value></value>
+		<value></value>
+	</files>
+	<directories action="remove">
+		<value></value>
+		<value></value>
+	</directories>
+</cleanDirectory>
+		

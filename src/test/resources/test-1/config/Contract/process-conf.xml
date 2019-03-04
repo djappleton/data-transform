@@ -1,0 +1,38 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+    <bean id="update" class="com.salesforce.dataloader.process.ProcessRunner" singleton="false">
+        <description>userUpsert job gets the user record from the CSV file and inserts it into Salesforce.</description>
+        <property name="name" value="update"/>
+        <property name="configOverrideMap">
+            <map>
+            
+            	<entry key="sfdc.proxyHost" 			value="macproxy.barnardos.org.uk"/>
+				<entry key="sfdc.proxyPassword" 		value=""/>
+				<entry key="sfdc.proxyPort" 			value="8080"/>
+				<entry key="sfdc.proxyUsername" 		value=""/>
+            
+				<entry key="sfdc.endpoint" 				value="https://login.salesforce.com"/>
+				<entry key="sfdc.username" 				value="david.appleton@barnardos.org.uk"/>
+				<entry key="sfdc.password" 				value="b5e358aea7499c06af096998459c7faa"/>
+				<entry key="process.encryptionKeyFile" 	value="C:\Users\david.appleton\git\data-transform\src\test\resources\test-1\Key.txt"/>
+				<entry key="sfdc.timeoutSecs" 			value="600"/>
+				<entry key="sfdc.loadBatchSize" 		value="200"/>
+				<entry key="sfdc.extractionRequestSize" value="500"/>
+            	
+                <entry key="sfdc.entity" 				value="BDU_Contract__c"/>
+                <entry key="dataAccess.type" 			value="csvRead"/>
+                <entry key="process.operation" 			value="update"/>
+                <entry key="dataAccess.name" 			value="[DATA-FILE]"/>
+                <entry key="process.mappingFile" 		value="C:\Users\david.appleton\git\data-transform\src\test\resources\test-1\config\Contract\mappings.sdl"/>
+                
+                <entry key="sfdc.debugMessages" 		value="true"/>
+                <entry key="process.outputSuccess" 		value="[WORKING-DIRECTORY]\result\success\data.csv"/>
+                <entry key="process.outputError" 		value="[WORKING-DIRECTORY]\result\error\data.csv"/>
+                <entry key="sfdc.debugMessagesFile" 	value="[WORKING-DIRECTORY]\result\debug\data.csv"/>
+                
+            </map>
+        </property>
+    </bean>
+        
+</beans>
